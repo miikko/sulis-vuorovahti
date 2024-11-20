@@ -33,11 +33,11 @@ export class SulisVuoroVahtiStack extends cdk.Stack {
       memorySize: 1024,
     });
 
-    // Create EventBridge rule to trigger the function every hour between 6:00-23:59
+    // Create EventBridge rule to trigger the function every hour between 8:00-21:59 (UTC+2)
     const rule = new events.Rule(this, 'BotScheduleRule', {
       schedule: events.Schedule.cron({
         minute: '0',
-        hour: '6-23',
+        hour: '6-20',
         day: '*',
         month: '*',
         year: '*'

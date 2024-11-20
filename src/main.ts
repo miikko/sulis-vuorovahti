@@ -40,7 +40,7 @@ export const main = async () => {
       await discordClient.editMessage(createTableMessage(openSlots), tableMessage.id, TABLE_CHANNEL_ID);
     }
     // Send notification if there are rare slots
-    const prevNotificationMessages = await discordClient.getMessages(NOTIFICATION_CHANNEL_ID, 3);
+    const prevNotificationMessages = await discordClient.getMessages(NOTIFICATION_CHANNEL_ID, 5);
     const rareSlots = getRareSlots(openSlots);
     const notificationMessage = createNotificationMessage(rareSlots, prevNotificationMessages);
     if (notificationMessage) {
