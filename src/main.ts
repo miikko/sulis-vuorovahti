@@ -7,7 +7,7 @@ const getRareSlots = (openSlots: OpenSlots): OpenSlots => {
   const getWeekday = (date: string) => {
     return new Date(date).toLocaleDateString('fi-FI', { weekday: 'short' });
   };
-  const rareTimes = ['17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
+  const rareTimes = ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
   const weekdaysShort = ['ma', 'ti', 'ke', 'to'];
   const rareSlots: OpenSlots = {};
   for (const date in openSlots) {
