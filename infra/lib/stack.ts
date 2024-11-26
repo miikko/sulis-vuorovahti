@@ -4,7 +4,7 @@ import * as events from 'aws-cdk-lib/aws-events';
 import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as path from 'path';
-import { EMAIL, PASSWORD, DISCORD_TOKEN, TABLE_CHANNEL_ID, NOTIFICATION_CHANNEL_ID } from './config';
+import { EMAIL, PASSWORD, DISCORD_TOKEN, TABLE_CHANNEL_ID, NOTIFICATION_CHANNEL_ID, HISTORY_CHANNEL_ID } from './config';
 
 export class SulisVuoroVahtiStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -28,6 +28,7 @@ export class SulisVuoroVahtiStack extends cdk.Stack {
         DISCORD_TOKEN,
         TABLE_CHANNEL_ID,
         NOTIFICATION_CHANNEL_ID,
+        HISTORY_CHANNEL_ID,
       },
       timeout: cdk.Duration.minutes(3),
       memorySize: 1024,
