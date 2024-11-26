@@ -5,7 +5,7 @@ A Discord bot that monitors and notifies about available badminton court slots a
 ## Features
 
 - Monitors available badminton court slots from two locations
-- Updates a visual timetable in Discord every hour between 8:00-21:59 (UTC+2)
+- Updates a visual timetable in Discord every 30 minutes between 8:00-21:59 (UTC+2)
 - Sends notifications for rare slots during peak hours on weekdays
 - Deployed as AWS Lambda function using CDK
 
