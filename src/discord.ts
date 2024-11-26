@@ -38,12 +38,16 @@ export class DiscordClient {
     }
   }
 
-  async editMessage(message: { embed: EmbedBuilder, attachment: AttachmentBuilder }, messageId: string, channelId: string) {
+  async editMessage(message: string | { embed: EmbedBuilder, attachment: AttachmentBuilder }, messageId: string, channelId: string) {
     const channel = await this.getChannel(channelId);
-    await channel.messages.edit(messageId, {
-      embeds: [message.embed],
-      files: [message.attachment]
-    });
+    if (typeof message === 'string') {
+      await channel.messages.edit(messageId, message);
+    } else {
+      await channel.messages.edit(messageId, {
+        embeds: [message.embed],
+        files: [message.attachment]
+      });
+    }
   }
 
   async getMessages(channelId: string, count: number): Promise<Message[]> {
@@ -53,20 +57,16 @@ export class DiscordClient {
   }
 }
 
-export const createNotificationMessage = (openSlots: OpenSlots, previousMessages: Message[]): string => {
-  const getWeekday = (date: string) => {
-    return new Date(date).toLocaleDateString('fi-FI', { weekday: 'short' });
-  };
+export const createNotificationMessage = (openSlots: OpenSlots): string => {
   const lines: string[] = [];
   for (const date in openSlots) {
-    const weekday = getWeekday(date);
+    const weekday = new Date(date).toLocaleDateString('fi-FI', { weekday: 'short' });
     for (const { time, place } of openSlots[date]) {
       const dateString = new Date(date).toLocaleDateString('fi-FI', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\./g, '/');
       lines.push(`${place} **${weekday}** ${dateString} kello **${time}**`);
     }
   }
-  const linesInChannel = previousMessages.flatMap(message => message.content.split('\n'));
-  return lines.filter(line => !linesInChannel.includes(line)).join('\n');
+  return lines.join('\n');
 };
 
 export const createTableMessage = (openSlots: OpenSlots) => {

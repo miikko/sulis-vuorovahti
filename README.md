@@ -5,7 +5,7 @@ A Discord bot that monitors and notifies about available badminton court slots a
 ## Features
 
 - Monitors available badminton court slots from two locations
-- Updates a visual timetable in Discord every hour between 6:00-23:59
+- Updates a visual timetable in Discord every hour between 8:00-21:59 (UTC+2)
 - Sends notifications for rare slots during peak hours on weekdays
 - Deployed as AWS Lambda function using CDK
 
@@ -26,9 +26,10 @@ A Discord bot that monitors and notifies about available badminton court slots a
 
 1. Create a Discord bot and get the token from Discord Developer Portal
 2. Create a server for the bot and invite it to the server
-3. Create two text channels in your Discord server that normal users should not have write access to:
+3. Create three text channels in your Discord server that normal users should not have write access to:
    - One for the timetable display
    - One for notifications
+   - One for history of rare slots (only bot should have read access to this channel)
 
 ## Setup
 
@@ -50,6 +51,7 @@ PASSWORD=your-tali-login-password
 DISCORD_TOKEN=your-discord-bot-token
 TABLE_CHANNEL_ID=your-table-channel-id
 NOTIFICATION_CHANNEL_ID=your-notification-channel-id
+HISTORY_CHANNEL_ID=your-history-channel-id
 ```
 
 4. Configure AWS credentials for deployment:
